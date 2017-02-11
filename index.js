@@ -20,6 +20,7 @@ app.use(require('express-session')({
 app.use('/', express.static('public'));
 app.use(passport.initialize());  
 app.use(passport.session()); 
+app.use(require('connect-flash'));
 
 app.post('/api/register', function (req, res) {
     res.send('register');
