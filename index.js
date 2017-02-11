@@ -5,11 +5,15 @@ var mongodbURL = require('./cred.js').mongodb.url;
 var db;
 var app = express();
 
+app.use(require('body-parser').urlencoded({ extended: true }));
 app.use('/', express.static('public'))
 
-app.get('/api', function (req, res) {
-    // register and login and other routes could be set up here
-    res.send('Hello World!');
+app.post('/api/register', function (req, res) {
+    res.send('register');
+});
+
+app.get('/api/login', function (req, res) {
+    res.send('login');
 });
 
 MongoClient.connect(mongodbURL, function (err, database) {
