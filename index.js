@@ -30,11 +30,3 @@ app.get('/api/login', function (req, res) {
 });
 
 app.listen(port);
-
-// MongoClient.connect(mongodbURL, function (err, database) {
-//     if (err) return console.log(err);
-//     db = database;
-//     app.listen(3000, function () {
-//         console.log('Example app listening on port 3000!', db.s.databaseName);
-//     });
-// });
