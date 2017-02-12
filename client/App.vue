@@ -1,8 +1,9 @@
 <template>
     <div id="app">
-        <h1>Spent</h1>
-        <h2>Where your money is going</h2>
-        <p>{{ msg }}</p>
+        <header>
+            <h1>Spent</h1>
+            <a href="logout">logout</a>
+        </header>
     </div>
 </template>
 
@@ -19,15 +20,22 @@
 
 <style lang="scss">
     #app {
-      font-family: 'Avenir', Helvetica, Arial, sans-serif;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-align: center;
-      color: #2c3e50;
-      margin-top: 60px;
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+        color: #2c3e50;
+    }
+
+    header {
+        display: flex;
+        align-items: center;
+        > * {
+            margin: 10px;
+        }
     }
 
     h1 {
-      font-weight: normal;
+        font-weight: normal;
     }
 </style>
