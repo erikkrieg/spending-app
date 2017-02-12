@@ -2,15 +2,32 @@
 <html>
 <head>
     <title>Spent - Where is your money going?</title>
+    <style>
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        form {
+            max-width: 350px;
+            margin: auto;
+        }
+
+        form > * {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+        }
+    </style>
 </head>
 <body>
-    <h1>Sign up for Spent and learn abput your spending habits</h1>
-    <form action="/signup" method="post">
-        <input type="text" name="email" placeholder="Email" />
-        <input type="password" name="password" placeholder="Password" />
-        <button>Sign up for free</button>
-    </form>
-    <div id="app"></div>
-    <script src="assets/build.js"></script>
+    <div class="container">
+        <h1>Sign up for Spent and learn about your spending habits</h1>
+        <form action="/signup" method="post">
+            <input type="text" name="email" placeholder="Email" />
+            <input type="password" name="password" placeholder="Password" />
+            <button>Sign up for free</button>
+        </form>
+    </div>
 </body>
 </html>
