@@ -3,12 +3,15 @@ var passport = require('passport');
 var router = express.Router();
 
 router.get('/', function (req, res, next) { 
+    console.log('isAuthenticated', req.isAuthenticated())
     if (req.isAuthenticated()) {
-        res.send('logged in');
+        res.render('pages/app', {
+            userId: req.user._id,
+            userEmail: req.user.local.email
+        });
     } else {
-        res.send('not logged in')
+        res.render('pages/landing');
     }
-    // res.render('index', { title: 'Express' });
 });
 
 
@@ -17,13 +20,13 @@ router.get('/logout', function (req, res) {
     res.redirect('/');
 });
 
-router.post('/api/signup', passport.authenticate('local-signup', {  
+router.post('/signup', passport.authenticate('local-signup', {  
   successRedirect: '/',
   failureRedirect: '/',
   failureFlash: true,
 }));
 
-router.post('/api/login', passport.authenticate('local-login', {  
+router.post('/login', passport.authenticate('local-login', {  
   successRedirect: '/',
   failureRedirect: '/',
   failureFlash: true,
