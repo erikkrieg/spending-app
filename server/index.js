@@ -15,7 +15,7 @@ mongoose.connect(cred.mongodb.url);
 app = express();
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-app.use(express.static('public'));
+app.use('/assets', express.static(path.join(__dirname, 'public')));
 app.use(require('cookie-parser')());
 app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(require('express-session')({ secret: cred.session.secret, resave: true, saveUninitialized: true }));
