@@ -2,7 +2,7 @@
     <div id="app">
         <h1>Spent</h1>
         <h2>Where your money is going</h2>
-        <p>Test this to see if new files are served</p>
+        <p>{{ msg }}</p>
     </div>
 </template>
 
