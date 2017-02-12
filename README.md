@@ -1,1 +1,1 @@
-# spending-app
+# spent-app
