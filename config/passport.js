@@ -1,16 +1,15 @@
 var LocalStrategy = require('passport-local').Strategy;  
 var User = require('../models/user');
 
-function createLocalStrategy() {
+function createLocalStrategy(callback) {
     return new LocalStrategy({
         usernameField: 'email',
         passwordField: 'password',
         passReqToCallback: true,
-    });
+    }, callback);
 }
 
 module.exports = function (passport) {  
-    var localStrategy;
     passport.serializeUser(function (user, done) { 
         done(null, user.id); 
     });
@@ -19,7 +18,7 @@ module.exports = function (passport) {
             done(err, user);
         });
     });
-    passport.use('local-signup', createLocalStrategy(), function (req, email, password, done) {
+    passport.use('local-signup', createLocalStrategy(function (req, email, password, done) {
         process.nextTick(function () {
             User.findOne({ 'local.email':  email }, function (err, user) {
                 if (err) return done(err);
@@ -36,8 +35,8 @@ module.exports = function (passport) {
                 }
             });
         });
-    });
-    passport.use('local-login', createLocalStrategy(), function(req, email, password, done) {
+    }));
+    passport.use('local-login', createLocalStrategy(function(req, email, password, done) {
         User.findOne({ 'local.email':  email }, function(err, user) {
             if (err) 
                 return done(err);
@@ -47,5 +46,5 @@ module.exports = function (passport) {
                 return done(null, false, req.flash('loginMessage', 'Wrong password.'));
             return done(null, user);
         });
-    });
+    }));
 };
