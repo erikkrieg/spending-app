@@ -1,0 +1,8 @@
+{
+    extends: ["vue"],
+    plugins: ["vue"],
+    rules: {
+        'indent': [2, 4, { 'SwitchCase': 1 }],
+        'semi': [2, 'always']
+    },
+}
