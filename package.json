@@ -2,10 +2,13 @@
   "name": "spending-app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server/index.js",
   "scripts": {
-    "dev": "./node_modules/.bin/nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ./client-app --ext .js --ext .vue",
+    "nodemon": "nodemon --watch server",
+    "dev": "cross-env NODE_ENV=development npm run nodemon | webpack --watch client",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "repository": {
     "type": "git",
@@ -26,10 +29,26 @@
     "express-session": "^1.15.1",
     "mongoose": "^4.8.2",
     "passport": "^0.3.2",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "vue": "^2.1.0"
   },
   "devDependencies": {
     "ejs": "^2.5.5",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "babel-core": "^6.0.0",
+    "babel-loader": "^6.0.0",
+    "babel-preset-es2015": "^6.0.0",
+    "cross-env": "^3.0.0",
+    "css-loader": "^0.25.0",
+    "eslint": "^3.15.0",
+    "eslint-config-vue": "^2.0.2",
+    "eslint-plugin-vue": "^2.0.1",
+    "file-loader": "^0.9.0",
+    "node-sass": "^4.5.0",
+    "sass-loader": "^5.0.1",
+    "vue-loader": "^10.0.0",
+    "vue-template-compiler": "^2.1.0",
+    "webpack": "^2.2.0",
+    "webpack-dev-server": "^2.2.0"
   }
 }

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spent - Where is your money going?</title>
+    <style>
+        body {
+            font-family: 'Avenir', Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            color: #2c3e50;
+        }
+
+        h1 {
+            font-weight: 500;
+        }
+
+        form {
+            max-width: 350px;
+            margin: auto;
+        }
+
+        form > * {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="center">Sign up for Spent and learn about your spending habits</h1>
+        <form action="/signup" method="post">
+            <input type="text" name="email" placeholder="Email" />
+            <input type="password" name="password" placeholder="Password" />
+            <button>Sign up for free</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <h2 class="center">Already have an account?</h2>
+        <form action="/login" method="post">
+            <input type="text" name="email" placeholder="Email" />
+            <input type="password" name="password" placeholder="Password" />
+            <button>Login</button>
+        </form>
+    </div>
+</body>
+</html>
