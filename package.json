@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint ./client-app --ext .js --ext .vue",
     "nodemon": "nodemon --watch server",
-    "dev": "cross-env NODE_ENV=development npm run nodemon | webpack --watch client",
+    "dev": "cross-env NODE_ENV=development npm run nodemon | webpack --watch",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
     "vue": "node helpers/write-component.js --name"
   },
