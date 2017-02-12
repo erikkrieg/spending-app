@@ -7,7 +7,8 @@
     "dev": "./node_modules/.bin/nodemon server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint ./client-app --ext .js --ext .vue",
-    "watch": "webpack --watch"
+    "watch": "webpack --watch",
+    "nodemon": "nodemon --watch server"
   },
   "repository": {
     "type": "git",
