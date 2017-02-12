@@ -6,10 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint ./client-app --ext .js --ext .vue",
-    "watch": "webpack --watch",
     "nodemon": "nodemon --watch server",
     "dev": "cross-env NODE_ENV=development npm run nodemon | webpack --watch client",
-    "webpack": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "repository": {
     "type": "git",
