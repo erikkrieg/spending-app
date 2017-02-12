@@ -3,6 +3,8 @@ var passport = require('passport');
 var mongoose = require('mongoose'); 
 
 var cred = require('./cred.js');
+var routes = require('./routes/index'); 
+var configPassport = require('./config/passport');
 
 var app;
 var port = 3000;
@@ -10,24 +12,16 @@ var port = 3000;
 mongoose.connect(cred.mongodb.url);
 
 app = express();
+app.set('view engine', 'ejs');
 app.use(require('body-parser').urlencoded({ extended: true }));
-app.use(require('cookie-parser'));
-app.use(require('express-session')({ 
-    secret: 'shhsecret',
-    resave: false,
-    saveUninitialized: false
-}));  // TODO: read about session and how secret is used
-app.use('/', express.static('public'));
+app.use(require('cookie-parser')());
+app.use(require('express-session')({ secret: cred.session.secret, resave: true, saveUninitialized: true }));
+app.use(express.static('public'))
+app.use('/', routes); 
 app.use(passport.initialize());  
 app.use(passport.session()); 
 app.use(require('connect-flash'));
 
-app.post('/api/register', function (req, res) {
-    res.send('register');
-});
-
-app.get('/api/login', function (req, res) {
-    res.send('login');
-});
+configPassport(passport);
 
 app.listen(port);
