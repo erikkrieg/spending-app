@@ -10,6 +10,10 @@
 
 <script>
     import AppHeader from './components/AppHeader.vue';
+    import AppPurchaseDateRange from './components/AppPurchaseDateRange.vue';
+    import AppPurchaseChart from './components/AppPurchaseChart.vue';
+    import AppPurchaseTable from './components/AppPurchaseTable.vue';
+
     export default {
         name: 'app',
         data () {
@@ -18,7 +22,10 @@
             };
         },
         components: {
-            AppHeader
+            AppHeader,
+            AppPurchaseDateRange,
+            AppPurchaseChart,
+            AppPurchaseTable
         },
         methods: {
             openAddPurchase () {
