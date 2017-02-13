@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <%- include('../partials/common-meta'); %>
     <title>Spent - Where is your money going?</title>
     <style>
+        * {
+            box-sizing: inherit;
+        }
+
         body {
+            box-sizing: border-box;
             font-family: 'Avenir', Helvetica, Arial, sans-serif;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
@@ -22,7 +28,13 @@
         form > * {
             display: block;
             width: 100%;
+            padding: 10px;
             margin: 10px 0;
+        }
+
+        input {
+            border: 1px solid rgb(192, 192, 192);
+;;
         }
 
         .container {
