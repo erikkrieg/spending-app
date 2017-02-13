@@ -7,7 +7,7 @@ router.get('/', function (req, res, next) {
     if (req.isAuthenticated()) {
         res.render('pages/app', {
             userId: req.user._id,
-            userEmail: req.user.local.email
+            userEmail: req.user.email
         });
     } else {
         res.render('pages/landing');
