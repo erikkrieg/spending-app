@@ -13,7 +13,7 @@
             font-family: 'Avenir', Helvetica, Arial, sans-serif;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            color: #2c3e50;
+            color: #fff;
         }
 
         h1 {
@@ -32,9 +32,13 @@
             margin: 10px 0;
         }
 
-        input {
-            border: 1px solid rgb(192, 192, 192);
-;;
+        .page {
+            height: 100vh;
+        }
+
+        .page--gradient {
+            background-color: #27D9CC;
+            background-image: linear-gradient(#0EEB9C, #00C9FF);
         }
 
         .container {
@@ -46,25 +50,69 @@
             text-align: center;
         }
 
+        .hide {
+            display: none;
+        }
+
+        .text-field {
+            position: relative;
+            height: 80px;
+        }
+
+        .text-field__input {
+            display: block;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid rgba(255,255,255,0.45);
+            background: none;
+            outline: none;
+            font-size: 18px;
+            font-weight: 300;
+            line-height: 1.5;
+            color: inherit;
+        }
+
+        .text-field__label {
+            position: absolute;
+            bottom: 0;
+            font-size: 20px;
+            line-height: 1;
+            transform: translateY(-40px);
+            transform: translateY(-10px);
+        }
+
+
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="center">Sign up for Spent and learn about your spending habits</h1>
-        <form action="/signup" method="post">
-            <input type="text" name="email" placeholder="Email" />
-            <input type="password" name="password" placeholder="Password" />
-            <button>Sign up for free</button>
-        </form>
-    </div>
+    <section class="page page--gradient">
+        <div class="container">
+            <h1 class="center">Spent.</h1>
+            <h2 class="center">Ready to take charge of your spending?</h2>
+            <form action="/signup" method="post">
+                <div class="text-field">
+                    <input id="email" class="text-field__input" type="text" name="email" required />
+                    <label class="text-field__label" for="email">Email</label>
+                </div>
+                <div class="text-field">
+                    <input id="password" class="text-field__input" type="password" name="password" required />
+                    <label class="text-field__label" for="password">Password</label>
+                </div>
+                <button>Get Spent</button>
+            </form>
+            <p>Already have an account? <a href="#login">Log in here.</a></p>
+        </div>
 
-    <div class="container">
-        <h2 class="center">Already have an account?</h2>
-        <form action="/login" method="post">
-            <input type="text" name="email" placeholder="Email" />
-            <input type="password" name="password" placeholder="Password" />
-            <button>Login</button>
-        </form>
-    </div>
+        <div class="container hide">
+            <h2 class="center">Already have an account?</h2>
+            <form action="/login" method="post">
+                <input type="text" name="email" placeholder="Email" />
+                <input type="password" name="password" placeholder="Password" />
+                <button>Login</button>
+            </form>
+        </div>
+    </section>
 </body>
 </html>
