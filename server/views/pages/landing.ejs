@@ -25,13 +25,6 @@
             margin: auto;
         }
 
-        form > * {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-        }
-
         .page {
             height: 100vh;
         }
@@ -79,11 +72,21 @@
             bottom: 0;
             font-size: 20px;
             line-height: 1;
-            transform: translateY(-40px);
             transform: translateY(-10px);
+            transition: transform 0.15s ease;
+            cursor: text;
         }
 
+        /*
+        .text-field--active .text-field__label,
+        .text-field__input:focus + .text-field__label {
+            transform: translateY(-40px);
+        }
+        */
 
+        .text-field--active .text-field__label {
+            transform: translateY(-40px);
+        }
     </style>
 </head>
 <body>
@@ -114,5 +117,34 @@
             </form>
         </div>
     </section>
+    <script type="text/javascript">
+        (function ($) {
+            var $body = document.body;
+            var textFieldEvents = ['keydown', 'focusin', 'focusout'];
+
+            textFieldEvents.forEach(function (eventName) {
+                $body.addEventListener(eventName, function(e) {
+                    if (e.target && e.target.classList.contains('text-field__input')) {
+                        textFieldEvent(e.target.parentNode);
+                    }
+                });
+            });
+
+            function textFieldEvent($textField) {
+                var action;
+                var $input = $textField.querySelector('input');
+
+                if (document.activeElement === $input) {
+                    action = 'add';
+                } else {
+                    action = $input.value.length > 0 ? 'add' : 'remove';
+                }
+
+                if (action) {
+                    $textField.classList[action]('text-field--active');
+                }
+            }
+        })(document.querySelectorAll.bind(document));
+    </script>
 </body>
 </html>
