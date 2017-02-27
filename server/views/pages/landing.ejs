@@ -16,7 +16,7 @@
             font-style: normal;
             font-stretch: normal;
             line-height: normal;
-            color: #fff;
+            color: #666;
         }
 
         form {
@@ -40,8 +40,14 @@
         .mt-5 {  margin-top: 50px; }
 
         .page {
+            position: absolute;
+            top: 0;
+            left: 0;
             height: 100vh;
+            width: 100%;
             padding: 1px 0 0 0;
+            background-color: white;
+            transition: opacity 0.5s linear;
         }
 
         .page--center-content {
@@ -52,6 +58,12 @@
         .page--gradient {
             background-color: #27D9CC;
             background-image: linear-gradient(#0EEB9C, #00C9FF);
+            color: white;
+        }
+
+        .page--hidden {
+            opacity: 0;
+            pointer-events: none;
         }
 
         .page__heading {
@@ -74,16 +86,13 @@
 
         .container {
             max-width: 800px;
+            width: 100%;
             margin: auto;
             padding: 0 25px;
         }
 
         .center {
             text-align: center;
-        }
-
-        .hide {
-            display: none;
         }
 
         .text-field {
@@ -97,13 +106,17 @@
             bottom: 0;
             width: 100%;
             border: none;
-            border-bottom: 1px solid rgba(255,255,255,0.45);
+            border-bottom: 1px solid rgba(102, 102, 102, 0.45);
             background: none;
             outline: none;
             font-size: 18px;
             font-weight: 300;
             line-height: 1.5;
             color: inherit;
+        }
+
+        .page--gradient .text-field__input {
+            border-color: rgba(255, 255, 255, 0.45);
         }
 
         .text-field__label {
@@ -144,7 +157,7 @@
         }
 
         .btn:active {
-            background-color: #b602d6;
+            background-color: #b600d5;
             transform: scale(1);
         }
 
@@ -153,10 +166,18 @@
             margin-left: auto;
             margin-right: auto;
         }
+
+        .btn--blue {
+            background-color: #25D3E0;
+        }
+
+        .btn--blue:active {
+            background-color: #1cb9c5;
+        }
     </style>
 </head>
 <body>
-    <section class="page page--gradient page--center-content">
+    <section class="js-register page page--gradient page--center-content">
         <div class="container">
             <h1 class="page__heading page__heading--main center">Spent.</h1>
             <h2 class="page__heading page__heading--sub center mt-4">Ready to take charge of your spending?</h2>
@@ -171,19 +192,30 @@
                 </div>
                 <button class="btn btn--center mt-4">Get Spent.</button>
             </form>
-            <p class="center mt-2">Already have an account? <a href="#login">Log in here.</a></p>
+            <p class="center mt-2">Already have an account? <a class="js-toggle-login" href="#">Log in here.</a></p>
         </div>
+    </section>
 
-        <div class="container hide">
-            <h2 class="center">Already have an account?</h2>
+    <section class="js-login page page--center-content page--hidden">
+        <div class="container">
+            <h1 class="page__heading page__heading--main center">Spent.</h1>
+            <h2 class="page__heading page__heading--sub center mt-4">Welcome back!</h2>
             <form action="/login" method="post" autocomplete="off">
-                <input type="text" name="email" placeholder="Email" />
-                <input type="password" name="password" placeholder="Password" />
-                <button class="btn btn--center">Login</button>
+                <div class="text-field">
+                    <input id="email" class="text-field__input" type="email" name="email" required />
+                    <label class="text-field__label" for="email">Email</label>
+                </div>
+                <div class="text-field">
+                    <input id="password" class="text-field__input" type="password" name="password" pattern=".{4,}" title="4 characters minimum" required />
+                    <label class="text-field__label" for="password">Password</label>
+                </div>
+                <button class="btn btn--blue btn--center mt-4">Log me in.</button>
             </form>
+            <p class="center mt-2">Dont't have an account? <a class="js-toggle-login" href="#">Sign up here.</a></p>
         </div>
     </section>
     <script type="text/javascript">
+        // sets up text field states
         (function ($) {
             var $body = document.body;
             var textFieldEvents = ['keydown', 'focusin', 'focusout'];
@@ -209,6 +241,24 @@
                 if (action) {
                     $textField.classList[action]('text-field--active');
                 }
+            }
+        })(document.querySelectorAll.bind(document));
+
+        (function ($) {
+            var $body = document.body;
+            if (window.location.hash === 'login') {
+                toggleLogin();
+            }
+            $body.addEventListener('click', function(e) {
+                if (e.target && e.target.classList.contains('js-toggle-login')) {
+                    e.preventDefault();
+                    toggleLogin();
+                }
+            });
+
+            function toggleLogin() {
+                $('.js-register')[0].classList.toggle('page--hidden');
+                $('.js-login')[0].classList.toggle('page--hidden');
             }
         })(document.querySelectorAll.bind(document));
     </script>
